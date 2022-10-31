@@ -1,0 +1,10 @@
+.form-style {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}

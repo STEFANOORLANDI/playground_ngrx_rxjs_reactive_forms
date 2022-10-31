@@ -1,0 +1,12 @@
+<p>ngrx-rxjs works!</p>
+<a [routerLink]="['home']">Home</a>
+<div *ngIf="!isLoading && !isError">
+  <p>Data:</p>
+  <div>{{dataString}}</div>
+</div>
+<div *ngIf="isLoading">
+  <p>Loading...</p>
+</div>
+<div *ngIf="isError">
+  <p>{{errorMessage}}</p>
+</div>

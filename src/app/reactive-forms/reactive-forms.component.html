@@ -1,0 +1,31 @@
+<p>reactive-forms works!</p>
+<a [routerLink]="['']">Home</a>
+
+<form class="form-style"
+      [formGroup]="profileForm"
+      (ngSubmit)="submit()">
+  <label for="first-name">First Name: </label>
+  <input id="first-name" type="text" formControlName="firstName">
+
+  <label for="last-name">
+    Last Name:
+    <span *ngIf="profileForm.controls.lastName.invalid" class="error">field required</span>
+  </label>
+  <input id="last-name" type="text" formControlName="lastName">
+
+  <button [disabled]="!profileForm.valid"
+          type="submit">submit form
+  </button>
+</form>
+<hr>
+<p>Form valid: {{profileForm.valid}}</p>
+<hr>
+<p>Form observed content:</p>
+<div>
+  {{formObservedContent}}
+</div>
+<hr>
+<p>Form submitted content:</p>
+<div>
+  {{formSubmittedContent}}
+</div>
