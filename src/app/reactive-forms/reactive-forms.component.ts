@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validator, Validators} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {FormArray, FormBuilder, Validators} from "@angular/forms";
 import {tap} from "rxjs";
 
 @Component({
@@ -9,15 +9,20 @@ import {tap} from "rxjs";
 })
 export class ReactiveFormsComponent implements OnInit {
 
-  profileForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl('', [Validators.required]),
+  profileForm = this.fb.group({
+    firstName: this.fb.control(''),
+    lastName: this.fb.control('', [Validators.required]),
+    hobbies: this.fb.array([
+        this.fb.control('')
+      ]
+    )
   });
 
   formObservedContent: string = "";
   formSubmittedContent: string = "";
 
-  constructor() { }
+  constructor(private fb: FormBuilder) {
+  }
 
   ngOnInit(): void {
     this.profileForm.valueChanges.pipe(
@@ -29,5 +34,13 @@ export class ReactiveFormsComponent implements OnInit {
 
   submit() {
     this.formSubmittedContent = JSON.stringify(this.profileForm.value);
+  }
+
+  addHobby() {
+    this.hobbies.push(this.fb.control(''));
+  }
+
+  get hobbies() {
+    return this.profileForm.get('hobbies') as FormArray;
   }
 }

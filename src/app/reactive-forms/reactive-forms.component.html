@@ -13,6 +13,14 @@
   </label>
   <input id="last-name" type="text" formControlName="lastName">
 
+  <div formArrayName="hobbies">
+    <button type="button" (click)="addHobby()">Add hobby</button>
+    <div *ngFor="let hobby of hobbies.controls; index as i">
+      <label>Hobby {{i + 1}}</label>
+      <input [formControlName]="i">
+    </div>
+  </div>
+
   <button [disabled]="!profileForm.valid"
           type="submit">submit form
   </button>
