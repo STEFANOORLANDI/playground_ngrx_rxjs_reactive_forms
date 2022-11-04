@@ -12,8 +12,6 @@ export class MainEffects {
   loadData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadData),
-      // Delay only for test
-      //delay(1000),
       mergeMap((action) =>
         this.dataService.getData(action.id).pipe(
           map((data) => successLoadData({data}))

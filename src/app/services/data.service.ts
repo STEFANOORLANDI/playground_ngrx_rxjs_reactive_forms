@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, of} from 'rxjs';
+import {delay, Observable, of} from 'rxjs';
 import {Data} from "../models/data";
 
 @Injectable({
@@ -13,6 +13,8 @@ export class DataService {
       id: id,
       name: "Name"
     });
+    // Delay only for test
+    //}).pipe(delay(1000));
   }
 
   constructor() {
