@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
-import {tap} from "rxjs";
+import {interval, tap} from "rxjs";
 import {Data} from "../models/data";
 import {DataState, LoadingDataStatus} from "../state/main.reducer";
 import {loadData} from "../state/main.actions";
@@ -17,6 +17,7 @@ export class NgrxRxjsComponent implements OnInit {
   errorMessage = '';
   data?: Data = undefined;
   dataString: string = '';
+  seconds: number = 0;
 
   constructor(private store: Store<{ dataState: DataState }>) {
   }
@@ -36,5 +37,12 @@ export class NgrxRxjsComponent implements OnInit {
         })
       )
       .subscribe();
+
+    // Interval example
+    let $intervalObs = interval(1000);
+
+    $intervalObs.pipe(
+      tap((value) => this.seconds = value)
+    ).subscribe();
   }
 }
