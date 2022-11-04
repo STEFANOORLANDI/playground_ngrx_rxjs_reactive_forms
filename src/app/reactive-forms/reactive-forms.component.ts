@@ -18,8 +18,8 @@ export class ReactiveFormsComponent implements OnInit {
     )
   });
 
-  formObservedContent: string = "";
-  formSubmittedContent: string = "";
+  formObservedContent: string = '';
+  formSubmittedContent: string = '';
 
   constructor(private fb: FormBuilder) {
   }
